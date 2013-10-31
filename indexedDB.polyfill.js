@@ -23,6 +23,12 @@
 
   if (!indexedDB.polyfill) return;
 
+  // browser doesn't support Web SQL so this polyfill can't operate.
+  if (!window.openDatabase) {
+    console.warn('This browser does not support IndexedDB or Web SQL API so it is not capable of client side storage.');
+    return;
+  }
+
   window.usingIndexedDBPolyfill = true;
 
   console.warn('This browser most likely does not support IndexedDB API. Initializing custom IndexedDB' +
