@@ -235,11 +235,11 @@
     advanceOrContinue(this, count, null);
   };
 
-  IDBCursor.prototype.continue = function (key) {
+  IDBCursor.prototype['continue'] = function (key) {
     advanceOrContinue(this, 1, key);
   };
 
-  IDBCursor.prototype.delete = function () {
+  IDBCursor.prototype['delete'] = function () {
     var objectStore = getObjectStore(this);
     IDBTransaction._assertNotReadOnly(objectStore.transaction);
     if (!(this instanceof util.IDBCursorWithValue) || !this._gotValue) throw util.error("InvalidStateError");
@@ -936,7 +936,7 @@
     var request = new util.IDBRequest(me);
     var cursor = new cursorType(me, direction, request);
     cursor._range = util.IDBKeyRange._ensureKeyRange(range);
-    cursor.continue();
+    cursor['continue']();
     return request;
   }
 
@@ -1189,7 +1189,7 @@
 
   //endregion
 
-  IDBObjectStore.prototype.delete = function (key) {
+  IDBObjectStore.prototype['delete'] = function (key) {
     util.IDBTransaction._assertNotReadOnly(this.transaction);
     key = util.validateKeyOrRange(key);
     var request = new util.IDBRequest(this);
@@ -1260,7 +1260,7 @@
     var request = new util.IDBRequest(this);
     var cursor = new util.IDBCursorWithValue(this, direction, request);
     cursor._range = util.IDBKeyRange._ensureKeyRange(range);
-    cursor.continue();
+    cursor['continue']();
     return request;
   };
 
