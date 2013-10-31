@@ -29,8 +29,6 @@
     return;
   }
 
-  window.usingIndexedDBPolyfill = true;
-
   console.warn('This browser most likely does not support IndexedDB API. Initializing custom IndexedDB' +
     ' implementation using Web SQL Database API.');
 
