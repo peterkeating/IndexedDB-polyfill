@@ -1412,7 +1412,7 @@
       sqlTx.executeSql("INSERT INTO " + indexedDB.SCHEMA_TABLE +
         " (name, type, keyPath, tableId, [unique], multiEntry) VALUES (?, 'index', ?, " +
         "(SELECT Id FROM " + indexedDB.SCHEMA_TABLE + " WHERE type = 'table' AND name = ?), ?, ?)",
-        [name, w_JSON.stringify(keyPath), me.name, unique ? 1 : 0, multiEntry ? 1 : 0],
+        [name, keyPath, me.name, unique ? 1 : 0, multiEntry ? 1 : 0],
         null, errorCallback);
 
       sqlTx.executeSql("SELECT id, hex(key) 'key', value FROM [" + me.name + "]", null,
